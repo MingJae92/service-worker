@@ -13,21 +13,21 @@ import axios from "axios";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [recipe, setRecipe]=useState([])
-  const recipeUrl = "https://dummyjson.com/recipes?select=name"
+  const [recipes, setRecipes] = useState([]);
+  const recipeUrl = "https://dummyjson.com/recipes?select=name";
 
-  useEffect(()=>{
-    const fetchRecipesData = async()=>{
-        try {
-            const recipeDataRes = await axios.get(recipeUrl)
-            console.log(recipeDataRes.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    fetchRecipesData()
-  },[])
-  
+  useEffect(() => {
+    const fetchRecipesData = async () => {
+      try {
+        const response = await axios.get(recipeUrl);
+        console.log(response.data.recipes); 
+        setRecipes(response.data.recipes); 
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchRecipesData();
+  }, []);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -53,7 +53,11 @@ const Header = () => {
             open={isMenuOpen}
             onClose={handleMenuClose}
           >
-            <MenuItem onClick={handleMenuClose}>Recipes</MenuItem>
+            {recipes.map((item) => (
+              <MenuItem key={item.name} onClick={handleMenuClose}>
+                {item.name}
+              </MenuItem>
+            ))}
           </Menu>
         </Box>
 
