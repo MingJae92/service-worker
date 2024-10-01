@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -9,9 +9,25 @@ import {
   Box,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import axios from "axios";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [recipe, setRecipe]=useState([])
+  const recipeUrl = "https://dummyjson.com/recipes?select=name"
+
+  useEffect(()=>{
+    const fetchRecipesData = async()=>{
+        try {
+            const recipeDataRes = await axios.get(recipeUrl)
+            console.log(recipeDataRes.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    fetchRecipesData()
+  },[])
+  
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,7 +43,7 @@ const Header = () => {
     <AppBar position="fixed" sx={{ width: "100%", top: 0 }}>
       <Toolbar sx={{ justifyContent: "center", width: "100%" }}>
         <Typography variant="h6" component="div" sx={{ textAlign: "center" }}>
-          My Store
+          Recipes
         </Typography>
 
         <Box sx={{ position: "relative" }}>
