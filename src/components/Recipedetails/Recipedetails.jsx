@@ -1,64 +1,91 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Container, Typography, Paper, Grid, List, ListItem, ListItemText, CircularProgress } from '@mui/material';
 
 const Recipedetails = () => {
-  const { id } = useParams();  // Extracting the id from the URL
+  const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
-    // Fetching detailed recipe data
     const fetchRecipeDetails = async () => {
       try {
         const response = await axios.get(`https://dummyjson.com/recipes/${id}`);
-        console.log(response.data);  // Logging the data returned by the API
-        setRecipe(response.data); // Set the recipe to the data returned
+        setRecipe(response.data);
       } catch (error) {
         console.error('Error fetching the recipe details:', error);
       }
     };
 
     fetchRecipeDetails();
-  }, [id]);  // Correct dependency
+  }, [id]);
 
   if (!recipe) {
-    return <div>Loading...</div>;
+    return (
+      <Container>
+        <CircularProgress />
+      </Container>
+    );
   }
 
-  // Displaying the recipe details directly
   return (
-    <div>
-      <h1>{recipe.name}</h1>
-      <img src={recipe.image} alt={recipe.name} style={{ width: '300px', height: 'auto' }} />
-      <p><strong>Cuisine:</strong> {recipe.cuisine}</p>
-      <p><strong>Difficulty:</strong> {recipe.difficulty}</p>
-      <p><strong>Calories per Serving:</strong> {recipe.caloriesPerServing}</p>
-      <p><strong>Prep Time:</strong> {recipe.prepTimeMinutes} minutes</p>
-      <p><strong>Cook Time:</strong> {recipe.cookTimeMinutes} minutes</p>
-      <p><strong>Servings:</strong> {recipe.servings}</p>
-      <p><strong>Rating:</strong> {recipe.rating} ({recipe.reviewCount} reviews)</p>
+    <Container maxWidth="md" style={{ marginTop: '20px' }}>
+      <Paper elevation={3} style={{ padding: '20px', borderRadius: '10px', backgroundColor: '#fffaf0' }}>
+        <Typography variant="h3" align="center" gutterBottom>
+          {recipe.name}
+        </Typography>
+        <img src={recipe.image} alt={recipe.name} style={{ width: '100%', borderRadius: '10px' }} />
+        
+        <Typography variant="h5" gutterBottom style={{ marginTop: '20px' }}>
+          Recipe Details
+        </Typography>
+        
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Typography><strong>Cuisine:</strong> {recipe.cuisine}</Typography>
+            <Typography><strong>Difficulty:</strong> {recipe.difficulty}</Typography>
+            <Typography><strong>Calories per Serving:</strong> {recipe.caloriesPerServing}</Typography>
+            <Typography><strong>Prep Time:</strong> {recipe.prepTimeMinutes} minutes</Typography>
+            <Typography><strong>Cook Time:</strong> {recipe.cookTimeMinutes} minutes</Typography>
+            <Typography><strong>Servings:</strong> {recipe.servings}</Typography>
+            <Typography><strong>Rating:</strong> {recipe.rating} ({recipe.reviewCount} reviews)</Typography>
+          </Grid>
+        </Grid>
 
-      <h2>Ingredients:</h2>
-      <ul>
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
-        ))}
-      </ul>
+        <Typography variant="h5" style={{ marginTop: '20px' }}>
+          Ingredients:
+        </Typography>
+        <List>
+          {recipe.ingredients.map((ingredient, index) => (
+            <ListItem key={index}>
+              <ListItemText primary={ingredient} />
+            </ListItem>
+          ))}
+        </List>
 
-      <h2>Instructions:</h2>
-      <ol>
-        {recipe.instructions.map((instruction, index) => (
-          <li key={index}>{instruction}</li>
-        ))}
-      </ol>
+        <Typography variant="h5" style={{ marginTop: '20px' }}>
+          Instructions:
+        </Typography>
+        <List>
+          {recipe.instructions.map((instruction, index) => (
+            <ListItem key={index}>
+              <ListItemText primary={`${index + 1}. ${instruction}`} />
+            </ListItem>
+          ))}
+        </List>
 
-      <h2>Meal Type:</h2>
-      <ul>
-        {recipe.mealType.map((type, index) => (
-          <li key={index}>{type}</li>
-        ))}
-      </ul>
-    </div>
+        <Typography variant="h5" style={{ marginTop: '20px' }}>
+          Meal Type:
+        </Typography>
+        <List>
+          {recipe.mealType.map((type, index) => (
+            <ListItem key={index}>
+              <ListItemText primary={type} />
+            </ListItem>
+          ))}
+        </List>
+      </Paper>
+    </Container>
   );
 };
 
