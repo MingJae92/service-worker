@@ -10,7 +10,9 @@ import {
   Box,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CottageIcon from "@mui/icons-material/Cottage";
 import axios from "axios";
+import { Home } from "@mui/icons-material";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -50,9 +52,11 @@ const Header = () => {
   return (
     <AppBar position="fixed" sx={{ width: "100%", top: 0 }}>
       <Toolbar sx={{ justifyContent: "center", width: "100%" }}>
-        <Typography variant="h6" component="div" sx={{ textAlign: "center" }}>
-          Recipes
-        </Typography>
+        <Link to="/">
+          <Typography variant="h6" component="div" sx={{ textAlign: "center" }}>
+            Recipes
+          </Typography>
+        </Link>
 
         <Box sx={{ position: "relative" }}>
           <Menu
@@ -64,7 +68,10 @@ const Header = () => {
             {recipes.map((item) => (
               <MenuItem key={item.id} onClick={() => handleSelect(item.id)}>
                 <Typography>
-                  <Link to={`/recipe/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Link
+                    to={`/recipe/${item.id}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
                     {item.name}
                   </Link>
                 </Typography>
