@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Use useNavigate
 import {
   AppBar,
   Toolbar,
@@ -15,19 +16,26 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [recipes, setRecipes] = useState([]);
   const recipeUrl = "https://dummyjson.com/recipes?select=name";
+  const navigate = useNavigate(); // Correct usage of useNavigate hook
 
+  // Fetch recipes from API
   useEffect(() => {
     const fetchRecipesData = async () => {
       try {
         const response = await axios.get(recipeUrl);
-        console.log(response.data.recipes); 
-        setRecipes(response.data.recipes); 
+        setRecipes(response.data.recipes);
       } catch (error) {
         console.log(error);
       }
     };
     fetchRecipesData();
   }, []);
+
+  const handleSelect = (recipeId) => {
+    if (recipeId) {
+      navigate(`/recipe/${recipeId}`); // Use ID to navigate
+    }
+  };
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,8 +62,12 @@ const Header = () => {
             onClose={handleMenuClose}
           >
             {recipes.map((item) => (
-              <MenuItem key={item.name} onClick={handleMenuClose}>
-                {item.name}
+              <MenuItem key={item.id} onClick={() => handleSelect(item.id)}>
+                <Typography>
+                  <Link to={`/recipe/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {item.name}
+                  </Link>
+                </Typography>
               </MenuItem>
             ))}
           </Menu>
