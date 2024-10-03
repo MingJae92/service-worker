@@ -53,10 +53,11 @@ const Header = () => {
     <AppBar position="fixed" sx={{ width: "100%", top: 0 }}>
       <Toolbar sx={{ justifyContent: "center", width: "100%" }}>
         <Link to="/">
-          <Typography variant="h6" component="div" sx={{ textAlign: "center" }}>
+          <CottageIcon/>
+        </Link>
+        <Typography variant="h6" component="div" sx={{ textAlign: "center" }}>
             Recipes
           </Typography>
-        </Link>
 
         <Box sx={{ position: "relative" }}>
           <Menu
