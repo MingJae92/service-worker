@@ -14,7 +14,7 @@ import CottageIcon from "@mui/icons-material/Cottage";
 import axios from "axios";
 
 const Header = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const recipeUrl = "https://dummyjson.com/recipes?select=name";
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ const Header = () => {
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Link to="/">
-            <IconButton edge="start" color="inherit">
+            <IconButton edge="start" sx={{ color: "#fff5e1" }}> {/* Creamy white icon color */}
               <CottageIcon fontSize="large" />
             </IconButton>
           </Link>
@@ -84,7 +84,7 @@ const Header = () => {
             color: "#fff5e1", // Creamy white for text
           }}
         >
-          Recipes
+          Recipes!!!
         </Typography>
 
         <Box sx={{ position: "relative" }}>
