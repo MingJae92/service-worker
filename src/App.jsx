@@ -24,14 +24,11 @@ function App() {
           width: '100%', // Ensure the content and footer span the full width
         }}
       >
-        <Router>
         <Routes>
           <Route path="/" element={<Header />} />
           <Route path="/recipe/:id" element={<Recipedetails />} />
           <Route path="*" element={<Pageerror />} />
         </Routes>
-        </Router>
-        
       </Box>
       <Footer /> {/* Footer will span the full width */}
     </Box>
