@@ -7,9 +7,18 @@ import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+<<<<<<< Updated upstream
     <BrowserRouter>
       <App />
     </BrowserRouter>
+=======
+  <BrowserRouter>
+    
+      <App />
+   
+    ,
+  </BrowserRouter>
+>>>>>>> Stashed changes
   </StrictMode>
 );
 

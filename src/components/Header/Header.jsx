@@ -119,12 +119,7 @@ const Header = () => {
             {recipes.map((item) => (
               <MenuItem key={item.id} onClick={() => handleSelect(item.id)}>
                 <Typography>
-                  <Link
-                    to={`/recipe/${item.id}`}
-                    style={{ textDecoration: "none", color: "#8b4513" }} // Earthy brown text
-                  >
-                    {item.name}
-                  </Link>
+                  {item.name}
                 </Typography>
               </MenuItem>
             ))}

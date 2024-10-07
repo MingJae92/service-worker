@@ -1,0 +1,10 @@
+diff a/public/service-worker.js b/public/service-worker.js	(rejected hunks)
+@@ -36,7 +39,7 @@ self.addEventListener('fetch', (event) => {
+ 
+         return fetch(event.request).then((fetchResponse) => {
+           // Check if we received a valid response
+-          if (!fetchResponse || fetchResponse.status !== 200 || fetchResponse.type !== 'basic') {
++          if (!fetchResponse || fetchResponse.status !== 200) {
+             return fetchResponse; // Return if the response is invalid or not cacheable
+           }
+ 

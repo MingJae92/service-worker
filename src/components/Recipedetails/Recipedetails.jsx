@@ -47,6 +47,7 @@ const Recipedetails = () => {
         const response = await axios.get(`https://dummyjson.com/recipes/${id}`);
         setRecipe(response.data);
         console.log(response);
+        console.log("recipes fetched:", response)
         setLoading(false); // Set loading to false after the fetch is complete
       } catch (error) {
         console.error("Error fetching the recipe details:", error);
