@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { act } from 'react'; // Import act from 'react'
 import Pageerror from './Pageerror';
 import { vi } from "vitest";
 import { useNavigate } from 'react-router-dom';
