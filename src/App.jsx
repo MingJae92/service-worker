@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Header/Header";
-import { Route, Routes, Router } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Recipedetails from "./components/Recipedetails/Recipedetails";
 import Pageerror from "./components/Pageerror/Pageerror";
 import Footer from "./components/Footer/Footer";
@@ -29,8 +29,6 @@ function App() {
           <Route path="/recipe/:id" element={<Recipedetails />} />
           <Route path="*" element={<Pageerror />} />
         </Routes>
-        </Router>
-        
       </Box>
       <Footer /> {/* Footer will span the full width */}
     </Box>
