@@ -177,9 +177,9 @@ const Recipedetails = () => {
           </Typography>
           <Grid container justifyContent="center" style={{ marginTop: "10px" }}>
             <Grid item xs={12} sm={8}>
-              <List style={{ textAlign: "center" }}>
+              <List style={{ textAlign: "center", padding: 0 }}>
                 {recipe.mealType.map((type, index) => (
-                  <ListItem key={index} style={{ justifyContent: "center" }}>
+                  <ListItem key={index} style={{ justifyContent: "center", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <ListItemText primary={type} />
                   </ListItem>
                 ))}
