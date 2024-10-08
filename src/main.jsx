@@ -6,11 +6,12 @@ import { Workbox } from "workbox-window";
 import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />,
-    </BrowserRouter>
-  </StrictMode>
+  <BrowserRouter>
+    <StrictMode>
+      <App />
+    </StrictMode>
+    ,
+  </BrowserRouter>
 );
 
 if ("serviceWorker" in navigator) {

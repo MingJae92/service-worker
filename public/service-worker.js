@@ -22,8 +22,11 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   console.log('Fetch request for:', event.request.url); // Log each fetch request
 
-  // Check if the request is from the same origin or allowed external URLs
-  if (event.request.method === 'GET' && (event.request.url.startsWith(self.location.origin) || event.request.url.startsWith("https://dummyjson.com"))) {
+  // Check if the request is from the same origin
+  if (event.request.method === 'GET' && (
+    event.request.url.startsWith(self.location.origin) ||
+    event.request.url.startsWith('https://dummyjson.com'))) {
+   
     event.respondWith(
       caches.match(event.request).then((response) => {
         if (response) {
@@ -34,7 +37,7 @@ self.addEventListener('fetch', (event) => {
 
         return fetch(event.request).then((fetchResponse) => {
           // Check if we received a valid response
-          if (!fetchResponse || fetchResponse.status !== 200 || fetchResponse.type !== 'basic') {
+          if (!fetchResponse || fetchResponse.status !== 200) {
             return fetchResponse; // Return if the response is invalid or not cacheable
           }
 
