@@ -1,31 +1,45 @@
-import React from 'react';
-import { Container, Typography, Box } from '@mui/material';
+// Footer.jsx
+import { Box } from "@mui/material";
+import { useEffect, useState } from "react";
 
-function Footer() {
-  return (
+const Footer = () => {
+  const [showFooter, setShowFooter] = useState(false); // State to control footer visibility
+
+  const handleScroll = () => {
+    const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
+    setShowFooter(bottom); // Show footer only when at the bottom
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll); // Add scroll event listener
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll); // Cleanup the event listener on unmount
+    };
+  }, []);
+
+  if (!showFooter) return null; // Don't render the footer if it's not visible
+
+  return ( // Removed the unnecessary conditional rendering here
     <Box
       component="footer"
       sx={{
-        backgroundColor: '#f8f4ec', // Soft, cookbook-themed background
-        padding: '20px 0', // Vertical padding for the content
-        boxShadow: '0px -2px 10px rgba(0, 0, 0, 0.1)', // Subtle shadow for separation
-        width: '100%', // Full width for the footer
-        position: 'fixed', // Fix it at the bottom
-        bottom: 0, // Always stick to the bottom
-        left: 0, // Align to the left edge
-        zIndex: 1000, // Keep it on top of other content
+        width: "100%", // Full width of the page
+        height: "60px", // Fixed height
+        backgroundColor: "#8B4513", // Dark brown color for visibility
+        color: "white", // White text for contrast
+        display: "flex", // Flexbox for layout
+        justifyContent: "center", // Center the text horizontally
+        alignItems: "center", // Center the text vertically
+        position: "fixed", // Sticks to the bottom
+        bottom: 0, // Stays at the bottom of the viewport
+        left: 0, // Aligns with the start of the page
+        zIndex: 1000, // High z-index to ensure it's above other elements
       }}
     >
-      <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
-        <Typography variant="h6" color="textPrimary" gutterBottom>
-          CookBook Footer
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          &copy; 2024 - All Rights Reserved | Delicious recipes at your fingertips
-        </Typography>
-      </Container>
+      © 2024 My Cookbook Application {/* Visible text in footer */}
     </Box>
   );
-}
+};
 
 export default Footer;
