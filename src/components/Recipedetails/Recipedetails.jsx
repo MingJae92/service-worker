@@ -9,7 +9,7 @@ import {
   ListItem,
   ListItemText,
   CircularProgress,
-  Grid, // Import stable Grid
+  Grid,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -47,7 +47,7 @@ const Recipedetails = () => {
         const response = await axios.get(`https://dummyjson.com/recipes/${id}`);
         setRecipe(response.data);
         console.log(response);
-        console.log("recipes fetched:", response)
+        console.log("recipes fetched:", response);
         setLoading(false); // Set loading to false after the fetch is complete
       } catch (error) {
         console.error("Error fetching the recipe details:", error);
@@ -145,9 +145,9 @@ const Recipedetails = () => {
           </Typography>
           <Grid container justifyContent="center" style={{ marginTop: "10px" }}>
             <Grid item xs={12} sm={8}>
-              <List style={{ textAlign: "center" }}>
+              <List style={{ textAlign: "center", padding: 0 }}>
                 {recipe.ingredients.map((ingredient, index) => (
-                  <ListItem key={index} style={{ justifyContent: "center" }}>
+                  <ListItem key={index} style={{ justifyContent: "center", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <ListItemText primary={ingredient} />
                   </ListItem>
                 ))}

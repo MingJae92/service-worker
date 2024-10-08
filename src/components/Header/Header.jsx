@@ -84,7 +84,7 @@ const Header = () => {
             color: "#fff5e1", // Creamy white for text
           }}
         >
-          Recipes!!!
+          Recipes
         </Typography>
 
         <Box sx={{ position: "relative" }}>
