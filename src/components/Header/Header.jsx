@@ -20,7 +20,6 @@ const Header = () => {
   const recipeUrl = "https://dummyjson.com/recipes?select=name";
   const navigate = useNavigate();
 
-  // Fetch recipes from API
   useEffect(() => {
     const fetchRecipesData = async () => {
       try {
@@ -36,7 +35,7 @@ const Header = () => {
   const handleSelect = (recipeId) => {
     if (recipeId) {
       navigate(`/recipe/${recipeId}`);
-      handleMenuClose(); // Close menu after selection
+      handleMenuClose(); 
     }
   };
 
@@ -56,15 +55,15 @@ const Header = () => {
       sx={{
         width: "100%",
         top: 0,
-        backgroundColor: "#8b4513", // Earthy brown tone
-        zIndex: 1300, // Keep the AppBar on top of other elements
+        backgroundColor: "#8b4513", 
+        zIndex: 1300, 
       }}
     >
       <Toolbar
         sx={{
           justifyContent: { xs: "space-between", md: "space-between" },
           width: "100%",
-          maxWidth: "1200px", // Limit the width for a centered, balanced look
+          maxWidth: "1200px",
           margin: "0 auto",
         }}
       >
@@ -85,10 +84,10 @@ const Header = () => {
               component="div"
               sx={{
                 flexGrow: 1,
-                fontFamily: "'Pacifico', cursive", // Handwritten font for a cozy feel
-                color: "#fff5e1", // Creamy white for text
-                fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" }, // Responsive font size
-                textAlign: "center", // Center text for smaller screens
+                fontFamily: "'Pacifico', cursive", 
+                color: "#fff5e1", 
+                fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" }, 
+                textAlign: "center", 
               }}
             >
               Recipes
@@ -104,7 +103,7 @@ const Header = () => {
                 aria-label="menu"
                 onClick={handleMenuOpen}
                 sx={{
-                  fontSize: { xs: "1.5rem", sm: "2rem" }, // Responsive icon size
+                  fontSize: { xs: "1.5rem", sm: "2rem" },
                 }}
               >
                 <MenuIcon fontSize="inherit" />
@@ -116,9 +115,9 @@ const Header = () => {
                 open={isMenuOpen}
                 onClose={handleMenuClose}
                 sx={{
-                  zIndex: 1400, // Ensures the menu pops above everything
-                  mt: 1, // Adjusts the spacing below the button
-                  width: { xs: "80vw", sm: "auto" }, // Responsive width for smaller screens
+                  zIndex: 1400,
+                  mt: 1,
+                  width: { xs: "80vw", sm: "auto" },
                 }}
                 anchorOrigin={{
                   vertical: "top",
@@ -134,10 +133,10 @@ const Header = () => {
                     key={item.id}
                     onClick={() => handleSelect(item.id)}
                     sx={{
-                      fontSize: { xs: "0.875rem", sm: "1rem" }, // Responsive font size
-                      padding: { xs: "8px 16px", sm: "10px 20px" }, // Responsive padding
-                      width: { xs: "80vw", sm: "auto" }, // Responsive width for menu items
-                      textAlign: "center", // Center text for smaller screens
+                      fontSize: { xs: "0.875rem", sm: "1rem" },
+                      padding: { xs: "8px 16px", sm: "10px 20px" },
+                      width: { xs: "80vw", sm: "auto" },
+                      textAlign: "center",
                     }}
                   >
                     <Typography>

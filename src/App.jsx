@@ -7,18 +7,18 @@ import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [showFooter, setShowFooter] = useState(false); // State to control footer visibility
+  const [showFooter, setShowFooter] = useState(false); 
 
   const handleScroll = () => {
     const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
-    setShowFooter(bottom); // Show footer only when at the bottom
+    setShowFooter(bottom); 
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll); // Add scroll event listener
+    window.addEventListener("scroll", handleScroll); 
 
     return () => {
-      window.removeEventListener("scroll", handleScroll); // Cleanup the event listener on unmount
+      window.removeEventListener("scroll", handleScroll); 
     };
   }, []);
 

@@ -13,30 +13,29 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-// Create a custom theme
 const theme = createTheme({
   typography: {
     fontFamily: '"Georgia", "Times New Roman", serif',
     h3: {
       fontSize: "2.5rem",
       fontWeight: 700,
-      color: "#8B4513", // SaddleBrown
+      color: "#8B4513",
       '@media (max-width:600px)': {
-        fontSize: '1.8rem', // Smaller font size on mobile
+        fontSize: '1.8rem',
       },
     },
     h5: {
       fontSize: "1.5rem",
       fontWeight: 600,
-      color: "#8B4513", // SaddleBrown
+      color: "#8B4513",
       '@media (max-width:600px)': {
-        fontSize: '1.2rem', // Smaller font size on mobile
+        fontSize: '1.2rem',
       },
     },
     body1: {
       fontSize: "1rem",
       fontWeight: 400,
-      color: "#333", // Darker text for readability
+      color: "#333",
     },
   },
 });
@@ -45,27 +44,24 @@ const Recipedetails = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState("");
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true); // Set initial loading to true
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRecipeDetails = async () => {
       try {
         const response = await axios.get(`https://dummyjson.com/recipes/${id}`);
         setRecipe(response.data);
-        console.log(response);
-        console.log("recipes fetched:", response);
-        setLoading(false); // Set loading to false after the fetch is complete
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching the recipe details:", error);
         setError(true);
-        setLoading(false); // Also stop loading if there's an error
+        setLoading(false);
       }
     };
 
     fetchRecipeDetails();
   }, [id]);
 
-  // Display loading spinner or error message if needed
   if (loading) {
     return (
       <Container>
@@ -118,7 +114,6 @@ const Recipedetails = () => {
             Recipe Details
           </Typography>
 
-          {/* Centering Recipe Details */}
           <Grid container spacing={2} justifyContent="center" sx={{ marginTop: "20px" }}>
             <Grid item xs={12} sm={6}>
               <Typography align="center">
@@ -145,7 +140,6 @@ const Recipedetails = () => {
             </Grid>
           </Grid>
 
-          {/* Centering Ingredients Section */}
           <Typography variant="h5" sx={{ marginTop: "20px", textAlign: "center" }}>
             Ingredients:
           </Typography>
@@ -160,7 +154,7 @@ const Recipedetails = () => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      padding: '10px 0', // Add padding for better spacing
+                      padding: '10px 0',
                     }}
                   >
                     <ListItemText primary={ingredient} />
@@ -170,7 +164,6 @@ const Recipedetails = () => {
             </Grid>
           </Grid>
 
-          {/* Centering Instructions Section */}
           <Typography variant="h5" sx={{ marginTop: "20px", textAlign: "center" }}>
             Instructions:
           </Typography>
@@ -186,7 +179,6 @@ const Recipedetails = () => {
             </Grid>
           </Grid>
 
-          {/* Centering Meal Type Section */}
           <Typography variant="h5" sx={{ marginTop: "20px", textAlign: "center" }}>
             Meal Type:
           </Typography>
@@ -201,7 +193,7 @@ const Recipedetails = () => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      padding: '10px 0', // Add padding for better spacing
+                      padding: '10px 0',
                     }}
                   >
                     <ListItemText primary={type} />
