@@ -20,7 +20,7 @@ const Footer = () => {
 
   if (!showFooter) return null; // Don't render the footer if it's not visible
 
-  return ( // Removed the unnecessary conditional rendering here
+  return ( 
     <Box
       component="footer"
       sx={{
@@ -35,6 +35,15 @@ const Footer = () => {
         bottom: 0, // Stays at the bottom of the viewport
         left: 0, // Aligns with the start of the page
         zIndex: 1000, // High z-index to ensure it's above other elements
+        '@media (max-width:600px)': { // Mobile responsiveness
+          height: "50px", // Adjust height for small screens
+        },
+        '@media (min-width:601px) and (max-width:960px)': { // Tablet responsiveness
+          height: "55px", // Adjust height for medium screens
+        },
+        '@media (min-width:961px)': { // Desktop responsiveness
+          height: "60px", // Keep height for large screens
+        },
       }}
     >
       © 2024 My Cookbook Application {/* Visible text in footer */}

@@ -21,11 +21,17 @@ const theme = createTheme({
       fontSize: "2.5rem",
       fontWeight: 700,
       color: "#8B4513", // SaddleBrown
+      '@media (max-width:600px)': {
+        fontSize: '1.8rem', // Smaller font size on mobile
+      },
     },
     h5: {
       fontSize: "1.5rem",
       fontWeight: 600,
       color: "#8B4513", // SaddleBrown
+      '@media (max-width:600px)': {
+        fontSize: '1.2rem', // Smaller font size on mobile
+      },
     },
     body1: {
       fontSize: "1rem",
@@ -86,10 +92,10 @@ const Recipedetails = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="md" style={{ marginTop: "20px" }}>
+      <Container maxWidth="md" sx={{ marginTop: "20px" }}>
         <Paper
           elevation={3}
-          style={{
+          sx={{
             padding: "20px",
             borderRadius: "10px",
             backgroundColor: "#fffaf0",
@@ -107,13 +113,13 @@ const Recipedetails = () => {
           <Typography
             variant="h5"
             gutterBottom
-            style={{ marginTop: "20px", textAlign: "center" }}
+            sx={{ marginTop: "20px", textAlign: "center" }}
           >
             Recipe Details
           </Typography>
 
           {/* Centering Recipe Details */}
-          <Grid container spacing={2} justifyContent="center" style={{ marginTop: "20px" }}>
+          <Grid container spacing={2} justifyContent="center" sx={{ marginTop: "20px" }}>
             <Grid item xs={12} sm={6}>
               <Typography align="center">
                 <strong>Cuisine:</strong> {recipe.cuisine}
@@ -140,20 +146,21 @@ const Recipedetails = () => {
           </Grid>
 
           {/* Centering Ingredients Section */}
-          <Typography variant="h5" style={{ marginTop: "20px", textAlign: "center" }}>
+          <Typography variant="h5" sx={{ marginTop: "20px", textAlign: "center" }}>
             Ingredients:
           </Typography>
-          <Grid container justifyContent="center" style={{ marginTop: "10px" }}>
+          <Grid container justifyContent="center" sx={{ marginTop: "10px" }}>
             <Grid item xs={12} sm={8}>
-              <List style={{ textAlign: "center", padding: 0 }}>
+              <List sx={{ textAlign: "center", padding: 0 }}>
                 {recipe.ingredients.map((ingredient, index) => (
                   <ListItem
                     key={index}
-                    style={{
+                    sx={{
                       justifyContent: "center",
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      padding: '10px 0', // Add padding for better spacing
                     }}
                   >
                     <ListItemText primary={ingredient} />
@@ -164,14 +171,14 @@ const Recipedetails = () => {
           </Grid>
 
           {/* Centering Instructions Section */}
-          <Typography variant="h5" style={{ marginTop: "20px", textAlign: "center" }}>
+          <Typography variant="h5" sx={{ marginTop: "20px", textAlign: "center" }}>
             Instructions:
           </Typography>
-          <Grid container justifyContent="center" style={{ marginTop: "10px" }}>
+          <Grid container justifyContent="center" sx={{ marginTop: "10px" }}>
             <Grid item xs={12} sm={8}>
-              <List style={{ textAlign: "center" }}>
+              <List sx={{ textAlign: "center" }}>
                 {recipe.instructions.map((instruction, index) => (
-                  <ListItem key={index} style={{ justifyContent: "center" }}>
+                  <ListItem key={index} sx={{ justifyContent: "center" }}>
                     <ListItemText primary={`${index + 1}. ${instruction}`} />
                   </ListItem>
                 ))}
@@ -180,20 +187,21 @@ const Recipedetails = () => {
           </Grid>
 
           {/* Centering Meal Type Section */}
-          <Typography variant="h5" style={{ marginTop: "20px", textAlign: "center" }}>
+          <Typography variant="h5" sx={{ marginTop: "20px", textAlign: "center" }}>
             Meal Type:
           </Typography>
-          <Grid container justifyContent="center" style={{ marginTop: "10px" }}>
+          <Grid container justifyContent="center" sx={{ marginTop: "10px" }}>
             <Grid item xs={12} sm={8}>
-              <List style={{ textAlign: "center", padding: 0 }}>
+              <List sx={{ textAlign: "center", padding: 0 }}>
                 {recipe.mealType.map((type, index) => (
                   <ListItem
                     key={index}
-                    style={{
+                    sx={{
                       justifyContent: "center",
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      padding: '10px 0', // Add padding for better spacing
                     }}
                   >
                     <ListItemText primary={type} />

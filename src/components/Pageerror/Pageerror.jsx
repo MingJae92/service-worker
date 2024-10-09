@@ -22,21 +22,29 @@ function Pageerror() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         textAlign: 'center',
-        padding: '20px',
+        padding: { xs: '20px', sm: '40px' }, // Responsive padding
       }}
     >
       <Typography
         variant="h4"
         component="h1"
         gutterBottom
-        sx={{ color: '#8B4513', fontFamily: 'Cursive' }} // Cookbook theme color and font
+        sx={{ 
+          color: '#8B4513', 
+          fontFamily: 'Cursive', 
+          fontSize: { xs: '1.5rem', md: '2rem' }, // Responsive font size
+        }} 
       >
         Oops! Recipe Not Found
       </Typography>
       <Typography
         variant="body1"
         gutterBottom
-        sx={{ color: '#A0522D', fontFamily: 'Cursive' }} // More cookbook-style text
+        sx={{ 
+          color: '#A0522D', 
+          fontFamily: 'Cursive', 
+          fontSize: { xs: '1rem', md: '1.25rem' }, // Responsive font size
+        }} 
       >
         It looks like this page is missing from the recipe book.
       </Typography>
@@ -51,6 +59,8 @@ function Pageerror() {
             backgroundColor: '#A0522D',
           },
           fontFamily: 'Cursive',
+          fontSize: { xs: '0.875rem', sm: '1rem' }, // Responsive button text size
+          padding: { xs: '10px 20px', sm: '12px 24px' }, // Responsive button padding
         }}
       >
         Back to Home Cookbook
