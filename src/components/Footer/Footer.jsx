@@ -1,54 +1,40 @@
-// Footer.jsx
-import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
+// Footer.test.jsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Footer from './Footer'; // Ensure the path is correct
+import '@testing-library/jest-dom/extend-expect'; // For additional matchers
 
-const Footer = () => {
-  const [showFooter, setShowFooter] = useState(false); // State to control footer visibility
+describe('Footer Component', () => {
+  beforeAll(() => {
+    // Set up the initial document height to simulate a scrollable page
+    Object.defineProperty(window.document, 'documentElement', {
+      value: {
+        scrollHeight: 1000, // Set the height of the document
+      },
+    });
+  });
 
-  const handleScroll = () => {
-    const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
-    setShowFooter(bottom); // Show footer only when at the bottom
-  };
+  it('renders the footer when scrolled to the bottom', () => {
+    render(<Footer />); // Render the Footer component
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll); // Add scroll event listener
+    // Simulate scrolling to the bottom of the page
+    window.scrollTo(0, 1000);
+    window.dispatchEvent(new Event('scroll')); // Dispatch scroll event
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll); // Cleanup the event listener on unmount
-    };
-  }, []);
+    // Check if the footer is rendered
+    const footerElement = screen.getByText(/© 2024 My Cookbook Application/i);
+    expect(footerElement).toBeInTheDocument(); // Expect footer to be in the document
+  });
 
-  if (!showFooter) return null; // Don't render the footer if it's not visible
+  it('does not render the footer when not scrolled to the bottom', () => {
+    render(<Footer />); // Render the Footer component
 
-  return ( 
-    <Box
-      component="footer"
-      sx={{
-        width: "100%", // Full width of the page
-        height: "60px", // Fixed height
-        backgroundColor: "#8B4513", // Dark brown color for visibility
-        color: "white", // White text for contrast
-        display: "flex", // Flexbox for layout
-        justifyContent: "center", // Center the text horizontally
-        alignItems: "center", // Center the text vertically
-        position: "fixed", // Sticks to the bottom
-        bottom: 0, // Stays at the bottom of the viewport
-        left: 0, // Aligns with the start of the page
-        zIndex: 1000, // High z-index to ensure it's above other elements
-        '@media (max-width:600px)': { // Mobile responsiveness
-          height: "50px", // Adjust height for small screens
-        },
-        '@media (min-width:601px) and (max-width:960px)': { // Tablet responsiveness
-          height: "55px", // Adjust height for medium screens
-        },
-        '@media (min-width:961px)': { // Desktop responsiveness
-          height: "60px", // Keep height for large screens
-        },
-      }}
-    >
-      © 2024 My Cookbook Application {/* Visible text in footer */}
-    </Box>
-  );
-};
+    // Simulate scroll position not at the bottom
+    window.scrollTo(0, 0); // Scroll to top
+    window.dispatchEvent(new Event('scroll')); // Dispatch scroll event
 
-export default Footer;
+    // Check if the footer is not rendered
+    const footerElement = screen.queryByText(/© 2024 My Cookbook Application/i);
+    expect(footerElement).not.toBeInTheDocument(); // Expect footer not to be in the document
+  });
+});
