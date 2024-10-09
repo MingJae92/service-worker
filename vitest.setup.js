@@ -1,12 +1,6 @@
-// vitest.setup.js
-import '@testing-library/jest-dom'; // Import jest-dom for custom matchers
-
+import '@testing-library/jest-dom';
 import { beforeAll, afterAll } from 'vitest';
 
-beforeAll(() => {
-  // Set up MSW or other global mocks here
-});
+beforeAll(() => {});
 
-afterAll(() => {
-  // Clean up after tests
-});
+afterAll(() => {});
