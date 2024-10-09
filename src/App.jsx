@@ -30,17 +30,15 @@ function App() {
         minHeight: "100vh",
       }}
     >
-      {/* Header */}
       <Header />
 
-      {/* Main Content */}
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           width: "100%",
-          paddingBottom: "60px", // Reserve space for the footer
-          overflowY: "auto", // Allow scrolling if needed
+          paddingBottom: "60px",
+          overflowY: "auto",
         }}
       >
         <Routes>
@@ -50,25 +48,24 @@ function App() {
         </Routes>
       </Box>
 
-      {/* Footer */}
-      {showFooter && ( // Render the footer only when showFooter is true
+      {showFooter && (
         <Box
           component="footer"
           sx={{
-            width: "100%", // Full width of the page
-            height: "60px", // Fixed height
-            backgroundColor: "#8B4513", // Dark brown color for visibility
-            color: "white", // White text for contrast
-            display: "flex", // Flexbox for layout
-            justifyContent: "center", // Center the text horizontally
-            alignItems: "center", // Center the text vertically
-            position: "fixed", // Sticks to the bottom
-            bottom: 0, // Stays at the bottom of the viewport
-            left: 0, // Aligns with the start of the page
-            zIndex: 1000, // High z-index to ensure it's above other elements
+            width: "100%",
+            height: "60px",
+            backgroundColor: "#8B4513",
+            color: "white",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            zIndex: 1000,
           }}
         >
-          © 2024 My Cookbook Application {/* Visible text in footer */}
+          © 2024 My Cookbook Application
         </Box>
       )}
     </Box>
